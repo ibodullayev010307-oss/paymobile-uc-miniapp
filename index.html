@@ -1,300 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PAYMOBILE UC 24/7</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<style>
-*{box-sizing:border-box}
-
-body{
- margin:0;
- padding:15px;
- background:#080d16;
- color:white;
- font-family:Arial,sans-serif;
-}
-
-.header{
- text-align:center;
- padding:25px 10px;
- border-radius:18px;
- background:linear-gradient(135deg,#064d32,#101d29);
- border:1px solid #18c879;
-}
-
-.header h1{
- color:#39f69b;
- font-size:25px;
-}
-
-.header p{color:#ddd}
-
-.title{
- font-size:19px;
- margin:25px 0 15px;
- color:#54f6a1;
-}
-
-.packages{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-
-.card{
- background:#182333;
- border:1px solid #33445a;
- border-radius:13px;
- padding:16px 8px;
- text-align:center;
- cursor:pointer;
-}
-
-.card.selected{
- border:2px solid #36ed91;
- background:#123d2a;
-}
-
-.uc{
- font-size:19px;
- font-weight:bold;
-}
-
-.price{
- color:#50ed9b;
- margin-top:9px;
- font-size:14px;
-}
-
-.box{
- background:#172334;
- border:1px solid #34465c;
- padding:17px;
- border-radius:14px;
- margin-top:12px;
-}
-
-input{
- width:100%;
- padding:15px;
- margin-top:10px;
- border-radius:10px;
- border:1px solid #41536b;
- background:#0d1725;
- color:white;
- font-size:16px;
-}
-
-button{
- border:0;
- border-radius:10px;
- padding:14px;
- font-weight:bold;
- cursor:pointer;
-}
-
-.copy{
- background:#25d37c;
- color:#071b10;
- width:100%;
- margin-top:12px;
-}
-
-.order{
- background:#20d77c;
- color:#062015;
- width:100%;
- margin-top:18px;
- font-size:17px;
-}
-
-.admin{
- display:block;
- text-align:center;
- background:#168ce0;
- color:white;
- padding:15px;
- border-radius:12px;
- margin-top:15px;
- text-decoration:none;
- font-weight:bold;
-}
-
-.warning{
- background:#3a2614;
- border:1px solid #e9a13d;
- border-radius:12px;
- padding:15px;
- margin-top:15px;
- color:#ffcf80;
- font-size:14px;
-}
-
-.footer{
- text-align:center;
- color:#999;
- font-size:13px;
- margin:25px 0;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071b18">
+  <title>PAYMOBILE UC 24/7</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:#071b18;color:#f4fff9;font-family:Arial,sans-serif}
+    .wrap{max-width:560px;margin:auto;padding:18px 14px 40px}
+    .brand{text-align:center;padding:18px 10px 22px}
+    .brand h1{margin:0;color:#55efb0;font-size:25px}.brand p{color:#a9c9bd;margin:8px 0 0}
+    .card{background:#102b25;border:1px solid #245447;border-radius:16px;padding:16px;margin:12px 0}
+    h2{font-size:18px;margin:0 0 12px;color:#8fffc9}
+    .packages{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .pkg{background:#163a30;border:1px solid #2b5b4d;border-radius:12px;padding:12px 8px;color:#fff;text-align:center;cursor:pointer}
+    .pkg b{display:block;font-size:17px}.pkg span{display:block;color:#8fffc9;margin-top:5px;font-size:14px}
+    .pkg.selected{border:2px solid #55efb0;background:#1c493b}
+    label{display:block;font-size:14px;color:#c6e4d8;margin:12px 0 6px}
+    input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #386657;background:#071f19;color:white;font-size:16px}
+    button{border:0;border-radius:11px;padding:14px 16px;font-size:16px;font-weight:bold;cursor:pointer}
+    .primary{width:100%;background:#55efb0;color:#06251b;margin-top:14px}
+    .secondary{background:#244b3e;color:#fff}
+    .row{display:flex;gap:9px;align-items:center}.row>*{flex:1}
+    .muted{color:#a9c9bd;font-size:13px;line-height:1.5}
+    .price{font-size:24px;color:#55efb0;font-weight:bold}
+    .hidden{display:none!important}
+    .notice{background:#352d16;border:1px solid #78652b;color:#ffe7a0;padding:11px;border-radius:10px;font-size:13px;line-height:1.45}
+    #status{margin-top:12px;line-height:1.5;font-size:14px;overflow-wrap:anywhere}
+    a{color:#8fffc9}
+  </style>
 </head>
-
 <body>
+<div class="wrap">
+  <header class="brand"><h1>🔥 PAYMOBILE UC 24/7 🔥</h1><p>PUBG MOBILE UC xarid qilish</p></header>
 
-<div class="header">
-<h1>🔥 PAYMOBILE UC 24/7 🔥</h1>
-<p>💎 PUBG MOBILE UC DO‘KONI</p>
-<p>⚡ TEZKOR • ISHONCHLI • 24/7</p>
+  <section class="card" id="catalog">
+    <h2>💎 UC paketni tanlang</h2>
+    <div class="packages" id="packages"></div>
+    <button class="primary" id="buyBtn" disabled>🛒 Sotib olish</button>
+  </section>
+
+  <section class="card hidden" id="playerStep">
+    <h2>🎮 PUBG ma’lumotlari</h2>
+    <div class="muted">UC yuborishimiz uchun ID va o‘yindagi nickname’ni to‘g‘ri kiriting.</div>
+    <label for="playerId">PUBG Player ID</label><input id="playerId" inputmode="numeric" placeholder="Masalan: 5123456789">
+    <label for="nickname">PUBG Nickname</label><input id="nickname" maxlength="40" placeholder="O‘yindagi ismingiz">
+    <button class="primary" id="confirmBtn">Tasdiqlash</button>
+    <button class="secondary" id="backBtn" style="width:100%;margin-top:9px">Orqaga</button>
+  </section>
+
+  <section class="card hidden" id="paymentStep">
+    <h2>💳 To‘lov</h2>
+    <div class="muted">Tanlangan paket:</div>
+    <div id="selectedSummary" style="margin:7px 0 14px"></div>
+    <div class="muted">To‘lov uchun karta:</div>
+    <div class="row" style="margin-top:8px"><strong id="cardNumber" style="font-size:18px;letter-spacing:1px">5614 6816 0521 4463</strong><button class="secondary" id="copyBtn" style="flex:0 0 auto">Nusxa</button></div>
+    <div class="muted" style="margin-top:8px">Karta egasi: IBODULLAYEV HASANBOY</div>
+    <div class="notice" style="margin-top:13px">Click yoki Payme ilovasida karta raqami orqali to‘lov qiling. To‘lovni amalga oshirgach, chek rasmini yoki PDF faylini quyida yuboring. Bu sahifa to‘lovni avtomatik tekshirmaydi.</div>
+    <label for="method">To‘lov usuli</label>
+    <select id="method"><option value="Click">Click</option><option value="Payme">Payme</option><option value="Boshqa">Boshqa</option></select>
+    <label for="receipt">To‘lov cheki (rasm yoki PDF)</label>
+    <input id="receipt" type="file" accept="image/*,.pdf,application/pdf">
+    <div class="muted">Rasm yoki PDF hajmi 3 MB dan oshmasin.</div>
+    <button class="primary" id="sendBtn">📨 Chekni yuborish</button>
+    <button class="secondary" id="editBtn" style="width:100%;margin-top:9px">Ma’lumotlarni o‘zgartirish</button>
+    <div id="status"></div>
+  </section>
+  <p class="muted" style="text-align:center">Savollar uchun: <a href="https://t.me/H0skl" target="_blank">@H0skl</a></p>
 </div>
-
-<h2 class="title">💎 UC SO‘M NARXLARI</h2>
-
-<div class="packages" id="packages"></div>
-
-<div class="box">
-<h3>🎮 PUBG PLAYER ID</h3>
-<input id="playerId"
-placeholder="Player ID raqamingizni kiriting"
-inputmode="numeric">
-</div>
-
-<div class="box">
-<h3>💳 TO‘LOV UCHUN KARTA 🇺🇿</h3>
-
-<p id="cardNumber"
-style="font-size:21px;font-weight:bold;letter-spacing:1px">
-5614 6816 0521 4463
-</p>
-
-<p>👤 IBODULLAYEV HASANBOY</p>
-
-<button class="copy" onclick="copyCard()">
-📋 KARTA RAQAMINI NUSXALASH
-</button>
-</div>
-
-<div class="warning">
-🚨 MUHIM! 🚨
-
-<p>1. UC paketini tanlang.</p>
-<p>2. PUBG Player ID raqamingizni kiriting.</p>
-<p>3. Karta orqali to‘lov qiling.</p>
-<p>4. To‘lov chekini adminga yuboring.</p>
-<p>⚠️ To‘lovdan oldin karta raqamini admin bilan tasdiqlang!</p>
-</div>
-
-<div class="box">
-<h3>⚡ BIZNING XIZMATLAR</h3>
-<p>✅ UC'ni PUBG MOBILE hisobingizga yuklash</p>
-<p>✅ Hamyonbop narxlar</p>
-<p>✅ 24/7 xizmat</p>
-<p>✅ Mijozlarga doimiy yordam</p>
-<p>✅ Qulay buyurtma berish</p>
-</div>
-
-<button class="order" onclick="order()">
-🛒 BUYURTMA BERISH
-</button>
-
-<a class="admin"
-href="https://t.me/H0skl"
-target="_blank">
-📩 ADMIN BILAN BOG‘LANISH
-</a>
-
-<div class="footer">
-🔥 PAYMOBILE UC 24/7 🔥
-<p>Bizni tanlaganingiz uchun rahmat! ❤️</p>
-</div>
-
 <script>
+const tg = window.Telegram?.WebApp;
+if (tg) { tg.ready(); tg.expand(); }
 
-const tg=window.Telegram.WebApp;
-tg.ready();
-tg.expand();
-
-const products=[
-["60 UC","11 500"],
-["120 UC","22 500"],
-["180 UC","36 000"],
-["325 UC","56 500"],
-["660 UC","112 500"],
-["720 UC","123 500"],
-["1320 UC","225 000"],
-["1800 UC","280 000"],
-["2125 UC","338 000"],
-["3850 UC","563 000"],
-["5650 UC","842 500"],
-["8100 UC","1 096 000"],
-["16200 UC","2 170 000"],
-["24300 UC","3 255 000"],
-["32400 UC","4 340 000"],
-["40500 UC","5 430 000"],
-["64800 UC","8 680 000"],
-["81000 UC","10 850 000"]
+const products = [
+ ["60 UC",11500],["120 UC",22500],["180 UC",36000],["325 UC",56500],
+ ["660 UC",112500],["720 UC",123500],["1320 UC",225000],["1800 UC",280000],
+ ["2125 UC",338000],["3850 UC",563000],["5650 UC",842500],["8100 UC",1096000],
+ ["16200 UC",2170000],["24300 UC",3255000],["32400 UC",4340000],
+ ["40500 UC",5430000],["64800 UC",8680000],["81000 UC",10850000]
 ];
-
-let selected=null;
-
-const box=document.getElementById("packages");
-
-products.forEach(p=>{
- const div=document.createElement("div");
- div.className="card";
-
- div.innerHTML=`
- <div class="uc">💎 ${p[0]}</div>
- <div class="price">${p[1]} so‘m</div>
- `;
-
- div.onclick=()=>{
-  document.querySelectorAll(".card")
-  .forEach(c=>c.classList.remove("selected"));
-
-  div.classList.add("selected");
-  selected=p;
- };
-
- box.appendChild(div);
+let selected = null;
+const fmt = n => new Intl.NumberFormat("uz-UZ").format(n) + " so‘m";
+const packagesEl = document.getElementById("packages");
+products.forEach((p,i)=>{
+  const b=document.createElement("button"); b.className="pkg"; b.type="button";
+  b.innerHTML=`<b>${p[0]}</b><span>${fmt(p[1])}</span>`;
+  b.addEventListener("click",()=>{
+    selected={name:p[0],price:p[1]};
+    document.querySelectorAll(".pkg").forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected"); document.getElementById("buyBtn").disabled=false;
+  });
+  packagesEl.appendChild(b);
 });
-
-function copyCard(){
- navigator.clipboard.writeText("5614681605214463")
- .then(()=>alert("Karta raqami nusxalandi!"))
- .catch(()=>alert("Karta: 5614 6816 0521 4463"));
-}
-
-function order(){
-
- const id=document.getElementById("playerId").value.trim();
-
- if(!selected){
-  alert("Avval UC paketini tanlang!");
-  return;
- }
-
- if(!/^\d{5,15}$/.test(id)){
-  alert("Player ID raqamini to‘g‘ri kiriting!");
-  return;
- }
-
- const data={
-  type:"uc_order",
-  product:selected[0],
-  price:selected[1],
-  player_id:id
- };
-
- if(tg.initData){
-  tg.sendData(JSON.stringify(data));
- }else{
-  alert("Buyurtma berish uchun Telegram Mini App orqali kiring.");
- }
-}
-
+const show = id => document.getElementById(id).classList.remove("hidden");
+const hide = id => document.getElementById(id).classList.add("hidden");
+document.getElementById("buyBtn").onclick=()=>{if(!selected)return;hide("catalog");show("playerStep");};
+document.getElementById("backBtn").onclick=()=>{hide("playerStep");show("catalog");};
+document.getElementById("confirmBtn").onclick=()=>{
+  const id=document.getElementById("playerId").value.trim();
+  const nick=document.getElementById("nickname").value.trim();
+  if(!/^[0-9]{5,20}$/.test(id)){alert("PUBG ID raqamini tekshiring (5–20 ta raqam).");return;}
+  if(nick.length<2){alert("PUBG nickname’ni kiriting.");return;}
+  document.getElementById("selectedSummary").innerHTML=`<b>${selected.name}</b> — <span class="price">${fmt(selected.price)}</span><br><span class="muted">PUBG ID: ${id}<br>Nickname: ${nick}</span>`;
+  hide("playerStep");show("paymentStep");
+};
+document.getElementById("copyBtn").onclick=async()=>{
+  try{await navigator.clipboard.writeText(document.getElementById("cardNumber").textContent);alert("Karta raqami nusxalandi.");}
+  catch(e){alert("Karta raqamini qo‘lda nusxalang.");}
+};
+document.getElementById("editBtn").onclick=()=>{hide("paymentStep");show("playerStep");};
+document.getElementById("sendBtn").onclick=async()=>{
+  const file=document.getElementById("receipt").files[0];
+  const id=document.getElementById("playerId").value.trim();
+  const nick=document.getElementById("nickname").value.trim();
+  const method=document.getElementById("method").value;
+  const status=document.getElementById("status");
+  if(!file){status.textContent="Iltimos, to‘lov chekini tanlang.";return;}
+  if(file.size>3*1024*1024){status.textContent="Fayl 3 MB dan kichik bo‘lishi kerak.";return;}
+  if(!(file.type.startsWith("image/") || file.type==="application/pdf")){status.textContent="Faqat rasm yoki PDF yuborish mumkin.";return;}
+  const reader=new FileReader();
+  reader.onload=async()=>{
+    status.textContent="Yuborilmoqda…";
+    document.getElementById("sendBtn").disabled=true;
+    try{
+      const resp=await fetch("/api/order",{
+        method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          product:selected.name,price:selected.price,player_id:id,nickname:nick,
+          payment_method:method,file_name:file.name,mime_type:file.type,
+          file_base64:String(reader.result).split(",")[1],
+          telegram_user:tg?.initDataUnsafe?.user ? {
+            id:tg.initDataUnsafe.user.id,
+            username:tg.initDataUnsafe.user.username||"",
+            first_name:tg.initDataUnsafe.user.first_name||""
+          } : null
+        })
+      });
+      const data=await resp.json();
+      if(!resp.ok) throw new Error(data.error||"Yuborishda xatolik.");
+      status.textContent="✅ Buyurtmangiz va chek admin’ga yuborildi. UC yuborilishini kuting.";
+      document.getElementById("receipt").value="";
+    }catch(e){status.textContent="❌ "+e.message;}
+    finally{document.getElementById("sendBtn").disabled=false;}
+  };
+  reader.onerror=()=>{status.textContent="Faylni o‘qib bo‘lmadi.";};
+  reader.readAsDataURL(file);
+};
 </script>
 </body>
-  </html>
+</html>
